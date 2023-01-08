@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+// import Navbar from './components/Navbar'
+import About from './components/About'
+import Alert from './components/Alert'
+import FormText from './components/FormText'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Wrapper } from './components/Wrapper'
 
 function App() {
+  const [mode, setMode] = useState('light')
+  const [alert, setalert] = useState(null);
+
+  const showAlert = (message, type) => {
+    setalert({
+      message: message,
+      type: type
+    })
+    setTimeout(() => {
+      setalert(null)
+    }, 1000);
+  }
+
+  const changeMode = () => {
+    if (mode === 'light') {
+      setMode('dark')
+      document.body.style.backgroundColor = '#080526'
+      showAlert("DarkMode has been enabled !", "success")
+    } else {
+      setMode('light')
+      document.body.style.backgroundColor = 'white'
+      showAlert("LightMode has been enabled !", "success")
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="" element={<Wrapper title="TextUtils" aboutText="About" mode={mode} changeMode={changeMode}  />}>
+            <Route path='/' element={<Alert alert={alert} />} />
+            <Route exact path='/home' element={<FormText showAlert={showAlert} heading="Enter the text to analize" mode={mode} />  } />alert
+            <Route exact path="/about" element={<About />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+
+    </>
+  )
 }
 
-export default App;
+App.propTypes = {}
+export default App
