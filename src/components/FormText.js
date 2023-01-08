@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function FormText(props) {
+export default function FormText(props) {console.log(props)
   
   console.log(props)
   const [text, settext] = useState('')
