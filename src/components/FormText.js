@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 
-export default function FormText(props) {console.log(props)
+export default function FormText(props) {
   
-  console.log(props)
   const [text, settext] = useState('')
   const Upclick = () => {
     let newText = text.toUpperCase()
     settext(newText)
+    
     props.showAlert("Text Uppercase successful !", "success")
+    console.log("message",props.showAlert);
+    
   }
   const Loclick = () => {
     let newText = text.toLowerCase()
@@ -34,6 +36,7 @@ export default function FormText(props) {console.log(props)
     settext(newtext.join(' '))
     props.showAlert("Extra Space Remove successful !", "success")
   }
+
   return (
     <>
       <div className="container my-3" style={{

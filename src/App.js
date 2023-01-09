@@ -8,16 +8,16 @@ import { Wrapper } from './components/Wrapper'
 
 function App() {
   const [mode, setMode] = useState('light')
-  const [alert, setalert] = useState(null);
+  const [alert, setAlert] = useState(null);
 
   const showAlert = (message, type) => {
-    setalert({
+    setAlert({
       message: message,
       type: type
     })
     setTimeout(() => {
-      setalert(null)
-    }, 1000);
+      setAlert(null)
+    }, 1500);
   }
 
   const changeMode = () => {
@@ -38,12 +38,11 @@ function App() {
         <Routes>
           <Route path="" element={<Wrapper title="TextUtils" aboutText="About" mode={mode} changeMode={changeMode}  />}>
             <Route path='/' element={<Alert alert={alert} />} />
-            <Route exact path='/home' element={<FormText showAlert={showAlert} heading="Enter the text to analize" mode={mode} />  } />alert
+            <Route exact path='/home' element={<FormText showAlert={showAlert} heading="Enter the text to analize" mode={mode} />  } />
             <Route exact path="/about" element={<About />} />
           </Route>
         </Routes>
       </BrowserRouter>
-
     </>
   )
 }
