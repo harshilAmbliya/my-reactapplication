@@ -38,7 +38,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Wrapper title="TextUtils" aboutText="About" mode={mode} changeMode={changeMode}  />}>
             <Route path='/' element={<Alert alert={alert} />} />
-            <Route index exact path='/' element={<FormText showAlert={showAlert} heading="Enter the text to analize" mode={mode} />  } />
+            <Route index exact path='/' element={<FormText showAlert={showAlert} heading="Enter the text to analize" 
+                mode={mode} />  } />
             <Route exact path="/about" element={<About />} />
           </Route>
         </Routes>
